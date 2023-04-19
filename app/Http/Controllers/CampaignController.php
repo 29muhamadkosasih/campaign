@@ -120,8 +120,9 @@ class CampaignController extends Controller
         return redirect()->route('campaign.campaign');
     }
 
-    public function show()
+    public function show($id)
     {
+        return view('pages.campaign.history');
 
     }
 
@@ -132,7 +133,10 @@ class CampaignController extends Controller
     }
     public function campaign()
     {
-        return view('pages.campaign.project');
+        $campaign =Campaign::all();
+        return view('pages.campaign.project',[
+            'campaign'   =>$campaign
+        ]);
 
     }
     public function history()

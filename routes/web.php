@@ -45,6 +45,7 @@ Route::group(['middleware' =>['auth']],  function () {
 
     Route::post('import-file', [DatabaseController::class, 'import'])->name('import');
     Route::get('campaign/campaign', [CampaignController::class, 'campaign'])->name('campaign.campaign');
+    Route::get('campaign/detail/{id}', [CampaignController::class, 'show'])->name('campaign.show');
     Route::get('campaign/history', [CampaignController::class, 'history'])->name('campaign.history');
     Route::get('campaign/overview', [CampaignController::class, 'overview'])->name('campaign.overview');
 });

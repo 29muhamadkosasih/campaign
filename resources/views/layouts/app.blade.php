@@ -108,7 +108,7 @@ License: For each use you must have a valid license purchased only from above li
 					<!--begin::Mobile logo-->
 					<div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
 						<a href="../../demo1/dist/index.html" class="d-lg-none">
-							<img alt="Logo" src="asset/media/logos/default-small.svg" class="h-30px" />
+							<img alt="Logo" src="{{ asset('asset/media/logos/default-small.svg') }}" class="h-30px" />
 						</a>
 					</div>
 					<!--end::Mobile logo-->
@@ -299,7 +299,7 @@ License: For each use you must have a valid license purchased only from above li
 								<div class="cursor-pointer symbol symbol-35px symbol-md-40px"
 									data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-attach="parent"
 									data-kt-menu-placement="bottom-end">
-									<img src="asset/media/avatars/300-1.jpg" alt="user" />
+									<img src="{{ asset('asset/media/avatars/300-1.jpg') }}" alt="user" />
 								</div>
 								<!--begin::User account menu-->
 								<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-color fw-semibold py-4 fs-6 w-275px"
@@ -309,7 +309,7 @@ License: For each use you must have a valid license purchased only from above li
 										<div class="menu-content d-flex align-items-center px-3">
 											<!--begin::Avatar-->
 											<div class="symbol symbol-50px me-5">
-												<img alt="Logo" src="asset/media/avatars/300-1.jpg" />
+												<img alt="Logo" src="{{ asset('asset/media/avatars/300-1.jpg') }}" />
 											</div>
 											<!--end::Avatar-->
 											<!--begin::Username-->
@@ -380,9 +380,9 @@ License: For each use you must have a valid license purchased only from above li
 					<div class="app-sidebar-logo px-6" id="kt_app_sidebar_logo">
 						<!--begin::Logo image-->
 						<a href="../../demo1/dist/index.html">
-							<img alt="Logo" src="asset/media/logos/default-dark.svg"
+							<img alt="Logo" src="{{ asset('asset/media/logos/default-dark.svg') }}"
 								class="h-25px app-sidebar-logo-default" />
-							<img alt="Logo" src="asset/media/logos/default-small.svg"
+							<img alt="Logo" src="{{ asset('asset/media/logos/default-small.svg') }}"
 								class="h-20px app-sidebar-logo-minimize" />
 						</a>
 						<!--end::Logo image-->
@@ -469,7 +469,7 @@ License: For each use you must have a valid license purchased only from above li
 								</div>
                                 <div class="menu-item">
 									<!--begin:Menu link-->
-									<a class="menu-link {{ request()->is('campaign') ? 'active' : '' }}"
+									<a class="menu-link {{ request()->is('campaign', 'campaign/campaign','campaign/history','campaign/overview','campaign.show') ? 'active' : '' }}"
 										href="{{ route('campaign.index') }}">
 										<span class="menu-icon">
 											<!--begin::Svg Icon | path: icons/duotune/general/gen002.svg-->

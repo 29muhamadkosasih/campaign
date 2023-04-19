@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Campaign;
 use App\Models\DatabaseUser;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -21,7 +22,10 @@ class DatabaseController extends Controller
 
     public function show()
     {
-        return view('pages.database.show');
+        $campaign =Campaign::all();
+        return view('pages.database.show',[
+            'campaign'   =>$campaign
+        ]);
     }
 
     public function import(Request $request)

@@ -127,7 +127,7 @@ License: For each use you must have a valid license purchased only from above li
                                 <!--begin::Email-->
                                 <input type="text" placeholder="Email" name="email" autocomplete="off"
                                     class="form-control bg-transparent @error('email') is-invalid @enderror"
-                                    value="{{ old('email') }}" required />
+                                    value="{{ old('email') }}" required autofocus />
                                 @error('email')
                                 <div class="invalid-feedback">
                                     {{ $message }}

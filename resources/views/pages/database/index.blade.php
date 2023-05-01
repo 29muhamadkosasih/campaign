@@ -133,7 +133,7 @@
                                 <th class="min-w-150px">Phone</th>
                                 <th class="min-w-150px">Domicile</th>
                                 <th class="min-w-150px">Inputed Date</th>
-                                <th class="min-w-150px">Action</th>
+                                <th class="min-w-50px">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -146,11 +146,11 @@
                                 <td>{{ $item->province }}</td>
                                 <td>{{ $item->created_at->locale('id')->Format('d, M Y') }}</td>
                                 <td>
-                                    <form onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                        action="{{ route('database.destroy', $item->id) }}" method="POST">
+
+                                    <form method="POST" action="{{ route('database.destroy', $item->id) }}">
                                         @csrf
-                                        @method('DELETE')
-                                        <a href="{{ route('database.show', $item->id) }}" class="btn btn-icon btn-bg-light btn-active-color-warning btn-sm me-1">
+                                        <a href="{{ route('database.show', $item->id) }}"
+                                            class="btn btn-icon btn-bg-light btn-active-color-warning btn-sm me-1">
                                             <!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
                                             <span class="svg-icon svg-icon-3">
                                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -165,8 +165,9 @@
                                             </span>
                                             <!--end::Svg Icon-->
                                         </a>
+                                        <input name="_method" type="hidden" value="DELETE">
                                         <button type="submit"
-                                            class="btn btn-icon btn-bg-light btn-active-color-danger btn-sm">
+                                            class="btn btn-icon btn-bg-light btn-active-color-danger btn-sm show_confirm">
                                             <span class="svg-icon svg-icon-3">
                                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">
@@ -183,6 +184,7 @@
                                             </span>
                                         </button>
                                     </form>
+
                                 </td>
                             </tr>
                             @endforeach
@@ -199,6 +201,28 @@
 </div>
 <!--end::Content-->
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+<script type="text/javascript">
+    $('.show_confirm').click(function (event) {
+        var form = $(this).closest("form");
+        var name = $(this).data("name");
+        event.preventDefault();
+        swal({
+            title: 'Are you sure?',
+    text: "You won't be able to revert this!",
+    icon: 'warning',
+                buttons: true,
+                dangerMode: true,
+
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    form.submit();
+                }
+            });
+    });
+</script>
+
 <script type="text/javascript">
     $(document).ready(function () {
         $("#kt_datatable_horizontal_scroll").DataTable({
@@ -206,5 +230,4 @@
         });
     });
 </script>
-
 @endsection

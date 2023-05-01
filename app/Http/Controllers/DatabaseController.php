@@ -42,7 +42,9 @@ class DatabaseController extends Controller
     {
         $delete = DatabaseUser::find($id);
         $delete->delete();
-        Alert::success('Congratulation', 'Delete Successfully');
+
+        Alert::success('Congratulation', 'Delete Data Successfully');
         return redirect()->back();
     }
+
 }

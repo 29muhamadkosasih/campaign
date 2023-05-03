@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class DatabaseUser extends Model
 {
-    use HasFactory;
+    use HasFactory;     
     protected $table = 'database_users';
     protected $guarded = [''];
 }

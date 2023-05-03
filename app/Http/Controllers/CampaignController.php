@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Campaign;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Spatie\Activitylog\Models\Activity;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class CampaignController extends Controller
@@ -112,10 +114,16 @@ class CampaignController extends Controller
         // dd($request);
         $campaign = $request->session()->get('campaign');
         $campaign->save();
-        dd($campaign);
+
+        // dd($campaign->campaign_name);
+
+        activity()
+            ->causedBy(Auth::user())
+            ->log($campaign->campaign_name);
 
         $request->session()->forget('campaign');
         // dd($request);
+
         Alert::success('Congratulation', 'Campaign Created Successfully');
         return redirect()->route('campaign.campaign');
     }
@@ -139,10 +147,13 @@ class CampaignController extends Controller
         ]);
 
     }
-    public function history()
+    public function history(Request $request)
     {
+        $log =Activity::latest()->get();
 
-        return view('pages.campaign.history');
+        return view('pages.campaign.history',[
+            'log'   =>$log,
+        ]);
 
     }
 }

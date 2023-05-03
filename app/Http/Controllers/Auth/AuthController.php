@@ -55,6 +55,9 @@ class AuthController extends Controller
         if (Auth::attempt($data)) {
             $request->session()->regenerate();
 
+            // activity()
+            // ->causedBy(Auth::user())
+            // ->log('Login');
             return redirect()->intended('dashboard')->with('success','Congratulations, Login successfully !');
         };
 
